@@ -1,5 +1,6 @@
 import json
 import boto3
+import urllib.parse
 import os
 from anomaly_detection import detect_anomaly
 
@@ -18,7 +19,7 @@ def lambda_handler(event, context):
     for record in event["Records"]:
 
         bucket = record["s3"]["bucket"]["name"]
-        key = record["s3"]["object"]["key"]
+        key = urllib.parse.unquote_plus(record["s3"]["object"]["key"])
 
         print("Processing file:", key)
 
