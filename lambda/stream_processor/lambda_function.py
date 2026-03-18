@@ -20,34 +20,36 @@ def lambda_handler(event, context):
         bucket = record["s3"]["bucket"]["name"]
         key = record["s3"]["object"]["key"]
 
+        print("Processing file:", key)
+
         response = s3.get_object(Bucket=bucket, Key=key)
         file_content = response["Body"].read()
 
         try:
             data = json.loads(file_content)
         except json.JSONDecodeError as e:
-            print(f"Failed to decode JSON for {key}: {e}")
-            continue  # skip to next record
+            print("JSON decode failed:", e)
+            continue
+
+        print("Data:", data)
 
         symbol = data.get("symbol")
         price = data.get("price")
 
         if not symbol or price is None:
-            print(f"Invalid data in {key}: {data}")
+            print("Invalid data:", data)
             continue
 
-        # anomaly detection
         if detect_anomaly(price):
-
             sns.publish(
                 TopicArn=TOPIC,
                 Message=f"Anomaly detected for {symbol} price {price}"
             )
 
-        # store processed data
+        print("Writing to DynamoDB:", data)
+
         table.put_item(Item=data)
 
-        # archive raw data
         s3.put_object(
             Bucket=ARCHIVE_BUCKET,
             Key=f"{symbol}/{data['timestamp']}.json",
