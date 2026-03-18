@@ -2,6 +2,7 @@ import json
 import boto3
 import urllib.parse
 import os
+from decimal import Decimal
 from anomaly_detection import detect_anomaly
 
 dynamodb = boto3.resource("dynamodb")
@@ -36,6 +37,9 @@ def lambda_handler(event, context):
 
         symbol = data.get("symbol")
         price = data.get("price")
+
+        # convert float to Decimal
+        data["price"] = Decimal(str(price))
 
         if not symbol or price is None:
             print("Invalid data:", data)
