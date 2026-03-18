@@ -1,6 +1,6 @@
 import requests
 from datetime import datetime
-from producer.config import FINNHUB_API_KEY, ALPHA_API_KEY
+from producer.config import FINNHUB_API_KEY, ALPHAVANTAGE_API_KEY
 
 
 def get_finnhub(symbol):
@@ -24,7 +24,7 @@ def get_finnhub(symbol):
 
 def get_alpha(symbol):
 
-    url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={ALPHA_API_KEY}"
+    url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={ALPHAVANTAGE_API_KEY}"
 
     try:
         r = requests.get(url).json()
