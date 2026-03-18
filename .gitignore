@@ -1,3 +1,22 @@
+# Virtual environments
+venv/
+.venv/
+
+# Environment variables
 .env
+.env.*
+
+# PyCharm / JetBrains
+.idea/
+
+# Python cache
 __pycache__/
 *.pyc
+*.pyo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
