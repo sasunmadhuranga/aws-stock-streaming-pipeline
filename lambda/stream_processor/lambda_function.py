@@ -2,6 +2,7 @@ import json
 import boto3
 import urllib.parse
 import os
+import copy
 from decimal import Decimal
 from anomaly_detection import detect_anomaly
 
@@ -55,8 +56,11 @@ def lambda_handler(event, context):
 
         table.put_item(Item=data)
 
+        archive_data = copy.deepcopy(data)
+        archive_data["price"] = float(archive_data["price"])
+
         s3.put_object(
             Bucket=ARCHIVE_BUCKET,
             Key=f"{symbol}/{data['timestamp']}.json",
-            Body=json.dumps(data)
+            Body=json.dumps(archive_data)
         )
