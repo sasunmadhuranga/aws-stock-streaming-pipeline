@@ -9,6 +9,7 @@ Architecture
 <img src="screenshots/1.png" width="600" />
 
 🔵 How It Works
+
 ✔  Data Ingestion
 
 A Python-based producer fetches real-time stock data from:
@@ -120,6 +121,7 @@ APIs: Finnhub, AlphaVantage
 🟢 Automated CI/CD pipeline for Lambda deployment
 
 🟢 Monitoring using CloudWatch logs
+
 
 📸 Screenshots
 <p align="center">
