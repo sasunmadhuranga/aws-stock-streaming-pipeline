@@ -1,38 +1,90 @@
-Designed and implemented a real-time stock market data analytics pipeline using AWS serverless architecture to ingest, process, store, and analyze streaming stock data. The system collects live stock prices from external APIs (Finnhub and AlphaVantage) through a Python-based producer service and stores raw JSON data in Amazon S3. An event-driven AWS Lambda function is automatically triggered on S3 object creation to validate data, perform anomaly detection, and transform data for storage. Processed data is stored in Amazon DynamoDB for fast access, while raw data is archived in a separate S3 bucket for historical analysis. Amazon SNS is used to send real-time alerts when anomalies are detected. For analytics, Amazon Athena is used to run SQL queries directly on S3 data, and results are visualized using Python (PyAthena, Pandas, Matplotlib). The project also incorporates CI/CD using GitHub Actions to automate Lambda deployment, demonstrating a scalable, event-driven, and cloud-native data engineering pipeline.
+Real-Time Stock Market Data Analytics Pipeline (AWS Serverless)
+Overview
 
-✔ Built a Python-based producer service to fetch real-time stock data from Finnhub and AlphaVantage APIs.
+This project demonstrates a real-time stock market data analytics pipeline built using AWS serverless services. The system ingests live stock data from external APIs, processes and analyzes it in real time, detects anomalies, and provides insights through queries and visualizations.
 
-✔ Implemented an event-driven architecture using Amazon S3 to trigger AWS Lambda on new data ingestion.
+The architecture follows an event-driven, scalable, and cloud-native design, making it suitable for real-world data engineering workflows.
 
-✔ Developed a Lambda function to validate JSON data, detect anomalies, and process stock records.
+Architecture
+<img src="screenshots/1.png" width="600" />
 
-✔ Handled DynamoDB constraints by converting float values to Decimal for accurate data storage.
+🔵 How It Works
+✔  Data Ingestion
 
-✔ Stored processed stock data in Amazon DynamoDB for real-time access and querying.
+A Python-based producer fetches real-time stock data from:
 
-✔ Archived raw stock data in Amazon S3 to enable historical analysis and data lake architecture.
+Finnhub API
 
-✔ Integrated Amazon SNS to send real-time alerts when abnormal stock price patterns are detected.
+AlphaVantage API
 
-✔ Configured Amazon Athena to run SQL queries on S3 data for analytics and reporting.
+Data is stored as JSON files in an Amazon S3 incoming bucket.
 
-✔ Visualized stock insights using Python with PyAthena, Pandas, and Matplotlib.
 
-✔ Implemented CI/CD using GitHub Actions to automate packaging and deployment of Lambda functions.
+✔  Event-Driven Processing
 
-✔ Enabled monitoring and debugging using Amazon CloudWatch logs.
+AWS Lambda is triggered automatically on S3 object creation (PUT event).
 
-✔ Designed a fully serverless and scalable pipeline without relying on always-running infrastructure.
+The Lambda function:
 
-Technologies:
+Validates incoming JSON data
 
-Python
+Detects anomalies in stock prices
 
-boto3
+Converts float values to Decimal (for DynamoDB compatibility)
 
-AWS Lambda
+Stores processed data in DynamoDB
+
+Archives raw data in another S3 bucket
+
+
+✔  Storage
+
+Amazon DynamoDB → Stores processed stock data for real-time access
+
+Amazon S3 (Archive Bucket) → Stores raw JSON for historical analysis
+
+
+✔  Alerts
+
+Amazon SNS sends real-time alerts when anomalies are detected.
+
+
+✔  Analytics
+
+Amazon Athena runs SQL queries directly on S3 data
+
+Example query:
+
+SELECT symbol, AVG(price) AS avg_price
+FROM stock_data
+GROUP BY symbol;
+
+✔  Visualization
+
+Python (PyAthena + Pandas + Matplotlib) is used to generate charts and insights.
+
+
+✔  CI/CD Pipeline
+
+Implemented using GitHub Actions
+
+Automatically:
+
+Packages Lambda code
+
+Deploys updates to AWS Lambda
+
+Enables continuous deployment for serverless functions
+
+▶ Tech Stack
+
+Languages: Python
+
+AWS Services:
 
 Amazon S3
+
+AWS Lambda
 
 Amazon DynamoDB
 
@@ -42,14 +94,55 @@ Amazon Athena
 
 Amazon CloudWatch
 
-GitHub Actions (CI/CD)
+Libraries: boto3, Pandas, Matplotlib, PyAthena
 
-PyAthena
+CI/CD: GitHub Actions
 
-Pandas
+APIs: Finnhub, AlphaVantage
 
-Matplotlib
 
-Finnhub API
+✅ Features
 
-AlphaVantage API
+🟢 Real-time stock data ingestion from external APIs
+
+🟢 Event-driven processing using AWS Lambda
+
+🟢 Anomaly detection on stock prices
+
+🟢 Dual storage strategy (DynamoDB + S3 Data Lake)
+
+🟢 Real-time alerts via SNS
+
+🟢 SQL-based analytics using Athena
+
+🟢 Data visualization with Python
+
+🟢 Automated CI/CD pipeline for Lambda deployment
+
+🟢 Monitoring using CloudWatch logs
+
+📸 Screenshots
+<p align="center">
+<img src="screenshots/3.png" width="600" />
+<img src="screenshots/4.png" width="600" />
+<img src="screenshots/5.png" width="600" />
+<img src="screenshots/6.png" width="600" />
+<img src="screenshots/11.png" width="600" />
+</p>
+
+
+🟢 Key Learnings
+
+Designing event-driven serverless architectures
+
+Handling data type constraints (Decimal vs float) in DynamoDB
+
+Implementing real-time pipelines without managed streaming services
+
+Using Athena for serverless analytics on S3 data
+
+Building CI/CD pipelines for AWS Lambda
+
+
+📎 License
+This project is for educational and portfolio purposes.
