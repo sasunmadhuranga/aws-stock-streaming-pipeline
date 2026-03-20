@@ -23,21 +23,3 @@ def run_producer():
 
 
 
-
-""" 
-def run_producer():
-    for symbol in stocks:
-
-        data = get_finnhub(symbol)
-
-        if not data:
-            print("Finnhub failed → switching to AlphaVantage")
-            data = get_alpha(symbol)
-
-        if data:
-            send_to_s3(data)
-            print("Uploaded:", data)
-
-        time.sleep(5)
-
-"""
