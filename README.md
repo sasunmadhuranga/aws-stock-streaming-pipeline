@@ -5,7 +5,9 @@ This project demonstrates a real-time stock market data analytics pipeline built
 
 The architecture follows an event-driven, scalable, and cloud-native design, making it suitable for real-world data engineering workflows.
 
+
 Architecture
+
 <img src="screenshots/1.png" width="600" />
 
 🔵 How It Works
