@@ -3,13 +3,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Connect to Athena
+
 conn = connect(
-    s3_staging_dir='s3://stock-raw-data-bucket-1254/',  # Athena query results
+    s3_staging_dir='s3://stock-raw-data-bucket-1254/',
     region_name='us-east-1'
 )
 
-# 1️⃣ Max, Min, and Avg Prices
 query1 = """
 SELECT 
     symbol,
@@ -26,7 +25,6 @@ plt.title("Stock Prices: Min, Avg, Max")
 plt.ylabel("Price ($)")
 plt.show()
 
-# 2️⃣ Volatility (Standard Deviation)
 query2 = """
 SELECT 
     symbol,
@@ -41,7 +39,6 @@ plt.title("Stock Price Volatility")
 plt.xlabel("Standard Deviation ($)")
 plt.show()
 
-# 3️⃣ Average Price Trend Over Time (Hourly)
 query3 = """
 SELECT 
     symbol,

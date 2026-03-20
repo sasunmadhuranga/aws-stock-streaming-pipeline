@@ -39,7 +39,6 @@ def lambda_handler(event, context):
         symbol = data.get("symbol")
         price = data.get("price")
 
-        # convert float to Decimal
         data["price"] = Decimal(str(price))
 
         if not symbol or price is None:
