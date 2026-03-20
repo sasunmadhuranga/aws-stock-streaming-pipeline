@@ -146,7 +146,3 @@ Implementing real-time pipelines without managed streaming services
 Using Athena for serverless analytics on S3 data
 
 Building CI/CD pipelines for AWS Lambda
-
-
-📎 License
-This project is for educational and portfolio purposes.
