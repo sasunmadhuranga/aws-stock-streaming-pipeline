@@ -6,10 +6,6 @@ This project demonstrates a real-time stock market data analytics pipeline built
 The architecture follows an event-driven, scalable, and cloud-native design, making it suitable for real-world data engineering workflows.
 
 
-Architecture
-
-<img src="screenshots/1.png" width="600" />
-
 🔵 How It Works
 
 ✔  Data Ingestion
@@ -146,3 +142,11 @@ Implementing real-time pipelines without managed streaming services
 Using Athena for serverless analytics on S3 data
 
 Building CI/CD pipelines for AWS Lambda
+
+
+Author
+
+Sasun Madhuranga
+
+GitHub: https://github.com/sasunmadhuranga
+
