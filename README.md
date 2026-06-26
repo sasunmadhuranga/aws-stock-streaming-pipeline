@@ -99,6 +99,12 @@ CI/CD: GitHub Actions
 
 APIs: Finnhub, AlphaVantage
 
+## Architecture
+
+<p align="center">
+    <img src="screenshots/diagram.png" width="600"/>
+</p>
+
 
 ✅ Features
 
